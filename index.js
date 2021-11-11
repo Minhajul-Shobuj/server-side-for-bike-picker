@@ -17,14 +17,49 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 async function run() {
     try {
         client.connect();
-        const database = client.db('online_shop');
-        const productCollection = database.collection('products');
+        const database = client.db('Bike_picker');
+        const bikeCollection = database.collection('bikes');
+        const orderCollection = database.collection('orders');
+        const userCollection = database.collection('users');
 
-        app.get('/products', async (req, res) => {
-            const cursor = productCollection.find({});
+        app.get('/bikes', async (req, res) => {
+            const cursor = bikeCollection.find({});
             const products = await cursor.toArray();
             res.json(products);
-        })
+        });
+        app.get('/users/:email', async (req, res) => {
+            const email=req.params.email;
+            const query = {email: email};
+            const user = await userCollection.findOne(query);
+            let isAdmin= false;
+            if(user?.role ==='admin'){
+                isAdmin= true;
+            }
+            res.json({admin: isAdmin});
+        });
+        
+        app.post('/orders', async (req, res) => {
+            const order = req.body;
+            const result = await orderCollection.insertOne(order);
+            res.json(result)
+        });
+        app.get('/orders', async (req, res) => {
+            const cursor = orderCollection.find({});
+            const orders = await cursor.toArray();
+            res.json(orders);
+        });
+        app.post('/users', async (req, res) => {
+            const order = req.body;
+            const result = await userCollection.insertOne(order);
+            res.json(result)
+        });
+        app.put('/users/admin', async (req, res) => {
+           const user= req.body;
+           const filter= {email: user.email};
+        const updateDoc= {$set: {role: 'admin'}};
+        const result=await userCollection.updateOne(filter,updateDoc);
+        res.json(result);
+        });
     }
     finally {
         // client();
