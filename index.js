@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 const { MongoClient } = require('mongodb');
+const ObjectId = require('mongodb').ObjectId;
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -27,6 +28,11 @@ async function run() {
             const products = await cursor.toArray();
             res.json(products);
         });
+                app.post('/bikes', async (req, res) => {
+                    const package = req.body;
+                    const result = await bikeCollection.insertOne(package);
+                    res.json(result);
+                });
         app.get('/users/:email', async (req, res) => {
             const email=req.params.email;
             const query = {email: email};
@@ -60,6 +66,12 @@ async function run() {
         const result=await userCollection.updateOne(filter,updateDoc);
         res.json(result);
         });
+        app.delete('/orders/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await orderCollection.deleteOne(query);
+            res.json(result);
+        })
     }
     finally {
         // client();
