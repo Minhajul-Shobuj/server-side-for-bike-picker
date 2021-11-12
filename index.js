@@ -22,6 +22,7 @@ async function run() {
         const bikeCollection = database.collection('bikes');
         const orderCollection = database.collection('orders');
         const userCollection = database.collection('users');
+        const reviewCollection = database.collection('reviews');
 
         app.get('/bikes', async (req, res) => {
             const cursor = bikeCollection.find({});
@@ -65,6 +66,11 @@ async function run() {
         const updateDoc= {$set: {role: 'admin'}};
         const result=await userCollection.updateOne(filter,updateDoc);
         res.json(result);
+        });
+        app.post('/reviews', async (req, res) => {
+            const order = req.body;
+            const result = await reviewCollection.insertOne(order);
+            res.json(result)
         });
         app.delete('/orders/:id', async (req, res) => {
             const id = req.params.id;
