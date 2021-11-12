@@ -72,6 +72,12 @@ async function run() {
             const result = await reviewCollection.insertOne(order);
             res.json(result)
         });
+        
+        app.get('/reviews', async (req, res) => {
+            const cursor = reviewCollection.find({});
+            const reviews = await cursor.toArray();
+            res.json(reviews);
+        });
         app.delete('/orders/:id', async (req, res) => {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
