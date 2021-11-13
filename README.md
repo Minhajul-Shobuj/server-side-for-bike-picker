@@ -27,7 +27,7 @@ JAVASCRIPT,AXIOUS,MONGODB,CORS,HEROKU,DOTENV,EXPRESS;
 ## Benefit of this app
 
 ```
-You can use this app for any e-commerce businessman;
+You can use this server for any e-commerce business;
 ```
 
 ## Github code link
