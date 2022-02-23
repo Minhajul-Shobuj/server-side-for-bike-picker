@@ -32,7 +32,7 @@ You can use this server for any e-commerce business;
 
 ## Github code link
 ```
-https://github.com/programming-hero-web-course-4/niche-website-server-side-Minhajul-Shobuj
+https://github.com/Minhajul-Shobuj/server-side-for-bike-picker
 ```
 
 ## live site link host on HEROKU
