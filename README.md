@@ -30,12 +30,20 @@ JAVASCRIPT,AXIOUS,MONGODB,CORS,HEROKU,DOTENV,EXPRESS;
 You can use this server for any e-commerce business;
 ```
 
-## Github code link
+## Github code link(Front-End)
+```
+https://github.com/Minhajul-Shobuj/online-bike-selling-website
+```
+## Github code link(Back-End)
 ```
 https://github.com/Minhajul-Shobuj/server-side-for-bike-picker
 ```
 
-## live site link host on HEROKU
+## live server link host on HEROKU
 ```
 https://nameless-wave-90962.herokuapp.com/
+```
+## live site link host on FIREBASE
+```
+https://project-for-assignment-458ed.firebaseapp.com/
 ```
